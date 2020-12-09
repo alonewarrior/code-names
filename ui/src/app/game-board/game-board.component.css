@@ -1,0 +1,7 @@
+.outer-board {
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10% 10%;
+  column-gap: 1em;
+  row-gap: 1em;
+  justify-content: center;
+}

@@ -1,7 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {CardComponent} from './card.component';
 import {ICard} from '../models/ICard';
+import {cardType} from '../models/card-type-enum';
 
 describe('CardComponent', () => {
   let component: CardComponent;
@@ -14,7 +13,7 @@ describe('CardComponent', () => {
 
     card = {
       noun: 'fiddlesticks',
-      type: 'red',
+      type: cardType.red,
       revealed: false,
       revealedImage: 'none'
     };

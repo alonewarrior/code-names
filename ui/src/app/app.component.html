@@ -1,8 +1,9 @@
-<app-card [card]="tempCard" [showKey]="false"></app-card>
+<app-game-board [showKeys]="keyVisible" [cards]="cards"></app-game-board>
 
 <div class="message">{{message}}</div>
 
 <div class="button-bar">
-  <button>New Game</button>
-  <button>Show/Hide Key</button>
+  <button (click)="newGame()">New Game</button>
+  <button *ngIf="!keyVisible" (click)="toggleKey()">Show Key</button>
+  <button *ngIf="keyVisible" (click)="toggleKey()">Hide Key</button>
 </div>

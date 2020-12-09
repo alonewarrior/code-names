@@ -1,6 +1,8 @@
+import {cardType} from './card-type-enum';
+
 export interface ICard {
   noun: string;
-  type: 'red'|'blue'|'innocent bystander'|'assassin';
+  type: cardType;
   revealed: boolean;
   revealedImage: string;
 }

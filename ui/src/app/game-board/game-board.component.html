@@ -1,1 +1,5 @@
-<p>game-board works!</p>
+<div class="outer-board">
+  <div *ngFor="let card of cards">
+    <app-card [card]="card" [showKey]="showKeys"></app-card>
+  </div>
+</div>
