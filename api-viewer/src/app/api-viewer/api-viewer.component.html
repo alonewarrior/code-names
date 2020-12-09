@@ -1,0 +1,6 @@
+<h1 id="title">Code Names API</h1>
+<!--<label>Show Only Public</label>-->
+<!--<input type="checkbox"  />-->
+<ng-container *ngFor="let resource of (resources$ | async)">
+    <app-api-viewer-set [name]="resource[0]" [resources]="resource[1]"></app-api-viewer-set>
+</ng-container>

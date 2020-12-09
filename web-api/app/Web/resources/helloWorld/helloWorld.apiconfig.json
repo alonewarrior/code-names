@@ -1,0 +1,18 @@
+{
+    "$schema": "/app/common/resourceConfig/schema.json",
+    "public": true,
+    "name": "helloWorld",
+    "helloWorld": {
+        "method": "GET",
+        "enabled": true,
+        "accessLevel": [
+            "guest"
+        ],
+        "uri": "/",
+        "middleware": {
+            "pre-auth": [],
+            "post-auth": [],
+            "post-resource": []
+        }
+    }
+}

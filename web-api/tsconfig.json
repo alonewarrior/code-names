@@ -1,0 +1,58 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "esnext",
+        "allowJs": true,
+        "outDir": "./build",
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "allowSyntheticDefaultImports": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "typeRoots": [
+            "node_modules/sequelize-typescript",
+            "node_modules/@types/sequelize",
+            "node_modules/@types",
+            "./typings.d.ts"
+        ],
+        "lib": [
+            "es2015",
+            "es5",
+            "es6",
+            "esnext"
+        ],
+        "types": [
+            "node",
+            "reflect-metadata",
+            "long",
+            "chai",
+            "mocha"
+        ],
+        "plugins": [
+            {
+                "name": "typescript-tslint-plugin",
+                "configFile": "./tslint.json",
+                "alwaysShowRuleFailuresAsWarnings": false,
+                "ignoreDefinitionFiles": true,
+                "suppressWhileTypeErrorsPresent": false
+            }
+        ],
+        "resolveJsonModule": true,
+        "incremental": true
+    },
+    "exclude": [
+        "./build",
+        "./docs",
+        "./database_deploy",
+        "./public",
+        "./public_dev",
+        "./tests",
+        "./learning",
+        "./_old_stuff_",
+        "./logs",
+        "./karma.conf.js",
+        "./tests.ts",
+        "./gulpfile.js"
+    ]
+}

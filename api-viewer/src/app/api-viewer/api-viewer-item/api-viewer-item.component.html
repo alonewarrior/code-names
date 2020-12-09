@@ -1,0 +1,19 @@
+<div class="api-container" [ngClass]="{
+        'get-method': resource.method === 'GET',
+        'post-method': resource.method === 'POST',
+        'patch-method': resource.method === 'PATCH',
+        'delete-method': resource.method === 'DELETE'}">
+    <div class="api-header" (click)="toggleDisplay()">
+        <span class="method"><span class="method-title">{{resource.method}}</span></span>
+        <span class="api-uri">{{resource.uri}}</span>
+        <span class="is-enabled" *ngIf="resource.isEnabled">(Enabled)</span>
+        <span class="is-enabled" *ngIf="!resource.isEnabled">(Disabled)</span>
+    </div>
+
+    <div *ngIf="shouldDisplay" class="api-body">
+        <div><strong>File Path</strong>: {{resource.filePath}}</div>
+        <div><strong>Auth Required</strong>: {{resource.isAuthRequired}}</div>
+        <div><strong>Access Level</strong>: {{resource.accessLevel}}</div>
+        <div><strong>Resource Key</strong>: {{resource.resourceKey}}</div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+h2:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, .75);
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, .75);
+}
+
+h2 {
+    color: rgba(0, 0, 0, .45);
+}
+
+ul {
+    list-style: none;
+    padding-left: .5em;
+}
+
+li {
+    margin: .5em 0;
+}
+
+

@@ -1,0 +1,100 @@
+@use "sass:map";
+$get-colors: (
+    "bg-color-base": cornflowerblue,
+    "bg-color-light": #edf3fd,
+    "bg-color-dark": #1651bc
+);
+
+$post-colors: (
+    "bg-color-base": green,
+    "bg-color-light": #e9fbe0,
+    "bg-color-dark": green
+);
+
+$patch-colors: (
+    "bg-color-base": orange,
+    "bg-color-light": #fff3dc,
+    "bg-color-dark": #e69500
+);
+
+$delete-colors: (
+    "bg-color-base": firebrick,
+    "bg-color-light": #fceded,
+    "bg-color-dark": firebrick
+);
+
+.api-container {
+
+}
+
+.api-header:hover {
+    cursor: pointer;
+}
+
+.api-header:hover .api-uri {
+    text-decoration: underline;
+}
+
+.api-header {
+    display: flex;
+    border: 1px solid darken(#f1f4f1, 5%);
+    font-size: 1.15em;
+    align-items: center;
+
+    > * {
+        padding: .25em;
+    }
+}
+
+.api-body {
+    padding: .5em;
+}
+
+@mixin methodLayout($colorObj) {
+    background-color: map.get($colorObj, "bg-color-light");
+    .api-header {
+        border: 1px solid darken(map.get($colorObj, "bg-color-light"), 10%);
+    }
+    .api-body {
+        //background-color: $get-bg-color-light;
+        background-color: lighten(map.get($colorObj, "bg-color-light"), 1%);
+        border-bottom: 1px solid darken(map.get($colorObj, "bg-color-light"), 10%);
+        border-left: 1px solid darken(map.get($colorObj, "bg-color-light"), 10%);
+        border-right: 1px solid darken(map.get($colorObj, "bg-color-light"), 10%);
+    }
+    .method {
+        background-color: map.get($colorObj, "bg-color-dark");
+    }
+}
+
+.get-method {
+    @include methodLayout($get-colors);
+}
+
+.post-method {
+    @include methodLayout($post-colors);
+}
+
+.patch-method {
+    @include methodLayout($patch-colors);
+}
+
+.delete-method {
+    @include methodLayout($delete-colors);
+}
+
+.method {
+    text-align: center;
+    width: 4em;
+    margin-right: .5em;
+    color: white;
+}
+
+.is-enabled {
+    margin-left: auto;
+    font-size: .8em;
+}
+
+.method-title {
+    font-size: .85em;
+}

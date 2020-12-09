@@ -1,0 +1,6 @@
+<h2 (click)="toggleDisplay()">{{name}} (Public: {{resources[0].isPublic}})</h2>
+<ul *ngIf="shouldDisplay">
+    <li *ngFor="let resource of resources">
+        <app-api-viewer-item [resource]="resource"></app-api-viewer-item>
+    </li>
+</ul>

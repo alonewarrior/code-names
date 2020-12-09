@@ -1,0 +1,407 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "findRelations": {
+                "enabled": true,
+                "middleware": {
+                    "pre-auth": [],
+                    "post-resource": [],
+                    "post-auth": []
+                },
+                "accessLevel": [
+                    "guest"
+                ]
+            },
+            "delete": {
+                "middleware": {
+                    "post-auth": [],
+                    "pre-auth": [],
+                    "post-resource": []
+                },
+                "accessLevel": [
+                    "thirdParty"
+                ],
+                "enabled": true,
+                "requireAuth": true
+            },
+            "public": true,
+            "update": {
+                "middleware": {
+                    "pre-auth": [],
+                    "post-resource": [],
+                    "post-auth": []
+                },
+                "accessLevel": [
+                    "thirdParty"
+                ],
+                "enabled": true,
+                "requireAuth": true
+            },
+            "findSingleRelation": {
+                "middleware": {
+                    "post-auth": [],
+                    "pre-auth": [],
+                    "post-resource": []
+                },
+                "accessLevel": [
+                    "guest"
+                ],
+                "enabled": true
+            },
+            "create": {
+                "requireAuth": true,
+                "middleware": {
+                    "post-resource": [],
+                    "post-auth": [],
+                    "pre-auth": []
+                },
+                "accessLevel": [
+                    "thirdParty"
+                ],
+                "enabled": true
+            },
+            "findById": {
+                "middleware": {
+                    "post-resource": [],
+                    "post-auth": [],
+                    "pre-auth": []
+                },
+                "accessLevel": [
+                    "guest"
+                ],
+                "enabled": true
+            },
+            "findAll": {
+                "middleware": {
+                    "pre-auth": [],
+                    "post-resource": [],
+                    "post-auth": []
+                },
+                "accessLevel": [
+                    "guest"
+                ],
+                "enabled": true
+            },
+            "model": "address"
+        }
+    ],
+    "required": [
+        "public"
+    ],
+    "additionalProperties": false,
+    "oneOf": [
+        {
+            "required": [
+                "model"
+            ]
+        },
+        {
+            "required": [
+                "name"
+            ]
+        }
+    ],
+    "definitions": {
+        "middleware": {
+            "type": "object",
+            "title": "The middleware schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {
+                "pre-auth": [],
+                "post-auth": [],
+                "post-resource": []
+            },
+            "examples": [
+                {
+                    "pre-auth": [],
+                    "post-resource": [],
+                    "post-auth": []
+                }
+            ],
+            "required": [
+                "pre-auth",
+                "post-auth",
+                "post-resource"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "pre-auth": {
+                    "type": "array",
+                    "title": "The pre-auth schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        []
+                    ],
+                    "additionalItems": true
+                },
+                "post-auth": {
+                    "type": "array",
+                    "title": "The post-auth schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        []
+                    ],
+                    "additionalItems": true
+                },
+                "post-resource": {
+                    "type": "array",
+                    "title": "The post-resource schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        []
+                    ],
+                    "additionalItems": true
+                }
+            }
+        },
+        "route": {
+            "type": "object",
+            "title": "The schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "middleware": {
+                        "post-auth": [],
+                        "pre-auth": [],
+                        "post-resource": []
+                    },
+                    "accessLevel": [
+                        "guest"
+                    ],
+                    "requireAuth": true,
+                    "enabled": true
+                }
+            ],
+            "required": [
+                "middleware",
+                "enabled",
+                "accessLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "middleware": {
+                    "$ref": "#/definitions/middleware"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "title": "The enabled schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "accessLevel": {
+                    "type": "array",
+                    "title": "The accessLevel schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            "guest"
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": [
+                        {
+                            "anyOf": [
+                                {
+                                    "type": "string",
+                                    "title": "The first anyOf schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": "",
+                                    "examples": [
+                                        "guest",
+                                        "admin"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "requireAuth": {
+                    "type": "boolean",
+                    "title": "The requireAuth schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                }
+            }
+        },
+        "customRoute": {
+            "type": "object",
+            "title": "The findById schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "middleware": {
+                        "post-auth": [],
+                        "pre-auth": [],
+                        "post-resource": []
+                    },
+                    "accessLevel": [
+                        "guest"
+                    ],
+                    "requireAuth": true,
+                    "enabled": true
+                }
+            ],
+            "required": [
+                "middleware",
+                "enabled",
+                "accessLevel",
+                "uri",
+                "method"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "middleware": {
+                    "$ref": "#/definitions/middleware"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "title": "The enabled schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "accessLevel": {
+                    "type": "array",
+                    "title": "The accessLevel schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            "guest"
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": [
+                        {
+                            "anyOf": [
+                                {
+                                    "type": "string",
+                                    "title": "The first anyOf schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": "",
+                                    "examples": [
+                                        "guest",
+                                        "admin"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "uri": {
+                    "type": "string",
+                    "title": "Provide a custom uri for the resource route",
+                    "description": "An explanation",
+                    "default": ""
+                },
+                "method": {
+                    "type": "string",
+                    "title": "The HTTP method to be used for the route",
+                    "examples": ["GET", "POST", "PATCH", "DELETE"],
+                    "enum": ["GET", "POST", "PATCH", "DELETE"]
+                },
+                "requireAuth": {
+                    "type": "boolean",
+                    "title": "The requireAuth schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                }
+            }
+        }
+    },
+    "patternProperties": {
+        "^([a-zA-Z]+|[a-z-]+)$": {
+            "$id": "#/properties/my-prop",
+            "$ref": "#/definitions/customRoute"
+        }
+    },
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "model": {
+            "$id": "#/properties/name",
+            "deprecationMessage": "'model' is deprecated, please use 'name' instead",
+            "type": "string",
+            "title": "The model schema",
+            "additionalProperties": false,
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "address"
+            ]
+        },
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The model schema",
+            "additionalProperties": false,
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "address"
+            ]
+        },
+        "public": {
+            "$id": "#/properties/public",
+            "type": "boolean",
+            "title": "The public schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": false,
+            "examples": [
+                true
+            ]
+        },
+        "findById": {
+            "$id": "#/properties/findById",
+            "$ref": "#/definitions/route"
+        },
+        "findAll": {
+            "$id": "#/properties/findAll",
+            "$ref": "#/definitions/route"
+        },
+        "findRelations": {
+            "$id": "#/properties/findRelations",
+            "$ref": "#/definitions/route"
+        },
+        "findSingleRelation": {
+            "$id": "#/properties/findSingleRelation",
+            "$ref": "#/definitions/route"
+        },
+        "create": {
+            "$id": "#/properties/create",
+            "$ref": "#/definitions/route"
+        },
+        "update": {
+            "$id": "#/properties/update",
+            "$ref": "#/definitions/route"
+        },
+        "delete": {
+            "$id": "#/properties/delete",
+            "$ref": "#/definitions/route"
+        }
+    }
+}

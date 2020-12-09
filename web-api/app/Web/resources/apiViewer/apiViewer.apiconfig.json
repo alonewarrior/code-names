@@ -1,0 +1,31 @@
+{
+    "$schema": "/app/common/resourceConfig/schema.json",
+    "public": true,
+    "name": "apiViewer",
+    "getResourcesView": {
+        "method": "GET",
+        "enabled": true,
+        "accessLevel": [
+            "guest"
+        ],
+        "uri": "/",
+        "middleware": {
+            "pre-auth": [],
+            "post-auth": [],
+            "post-resource": []
+        }
+    },
+    "getResources": {
+        "method": "GET",
+        "uri": "/resources",
+        "enabled": true,
+        "accessLevel": [
+            "guest"
+        ],
+        "middleware": {
+            "pre-auth": [],
+            "post-auth": [],
+            "post-resource": []
+        }
+    }
+}
