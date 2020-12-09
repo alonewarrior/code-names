@@ -14,6 +14,17 @@ describe('NounService', () => {
     expect(service).toBeTruthy();
   });
 
+  describe('.getRandomNoun', () => {
+    it('should return a noun', () => {
+      // when
+      const result = service.getRandomNoun();
+
+      // then
+      expect(result).not.toBeNull();
+      expect(result).not.toBe('');
+    });
+  });
+
   describe('.getRandomNouns', () => {
     it('should return a number of nouns', () => {
       // when
