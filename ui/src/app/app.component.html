@@ -1,4 +1,4 @@
-<app-game-board [showKeys]="keyVisible" [cards]="cards"></app-game-board>
+<app-game-board [showKeys]="keyVisible" [cards]="cards" (cardSelected)="isGameOver($event)"></app-game-board>
 
 <div class="message">{{message}}</div>
 

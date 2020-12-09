@@ -1,8 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ICard} from '../models/ICard';
-import {NounService} from '../services/noun/noun.service';
 import {cardType} from '../models/card-type-enum';
-import {GameService} from '../services/game/game.service';
 
 @Component({
   selector: 'app-game-board',
@@ -13,6 +11,7 @@ export class GameBoardComponent implements OnInit {
 
   @Input() showKeys = false;
   @Input() cards: ICard[] = [];
+  @Output() cardSelected: EventEmitter<cardType> = new EventEmitter<cardType>();
 
   constructor() {
   }
@@ -20,6 +19,7 @@ export class GameBoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
+  aCardSelected($event: cardType): void {
+    this.cardSelected.emit($event);
+  }
 }

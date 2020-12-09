@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NounService} from './services/noun/noun.service';
 import {GameService} from './services/game/game.service';
 import {ICard} from './models/ICard';
+import {cardType} from './models/card-type-enum';
 
 @Component({
   selector: 'app-root',
@@ -31,10 +32,18 @@ export class AppComponent implements OnInit {
       this.numOfBystanders, this.numOfAgents);
   }
 
-
   toggleKey(): void {
     this.keyVisible = !this.keyVisible;
   }
 
-
+  isGameOver($event: cardType): void {
+    if ($event === cardType.assassin) {
+      this.message = 'You lose';
+    }
+    if ($event === cardType.blue || $event === cardType.red) {
+      if (this.cards.filter(c => c.revealed === false && c.type === $event).length === 0) {
+        this.message = `Game Over. ${$event} team wins!`;
+      }
+    }
+  }
 }
