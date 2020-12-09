@@ -5,6 +5,7 @@ import SpyObj = jasmine.SpyObj;
 import {NounService} from '../services/noun/noun.service';
 import {getMockNounService} from '../mocks/noun.service.mock';
 import nouns from '../services/noun/nouns';
+import {cardType} from '../models/card-type-enum';
 
 describe('GameBoardComponent', () => {
   let component: GameBoardComponent;
@@ -30,5 +31,50 @@ describe('GameBoardComponent', () => {
         '18', '19', '20', '21', '22', '23', '24', '25']).toContain(card.noun));
     });
 
+  });
+
+  describe('.generateRandomCardTypes', () => {
+    it('should include assassins', () => {
+      // given
+      // when
+      const result = component.generateRandomCardTypes(5, 2, 0, 0, 0)
+        .filter(r => r === cardType.assassin);
+      // then
+      expect(result.length).toBe(2);
+    });
+
+    it('should include bystanders', () => {
+      // given
+      // when
+      const result = component.generateRandomCardTypes(5, 0, 2, 0, 0)
+        .filter(r => r === cardType.bystander);
+      // then
+      expect(result.length).toBe(2);
+    });
+
+    it('should include minimum red', () => {
+      // given
+      // when
+      const result = component.generateRandomCardTypes(5, 0, 0, 2, 0)
+        .filter(r => r === cardType.red);
+      // then
+      expect(result.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it('should include minimum blue', () => {
+      // given
+      // when
+      const result = component.generateRandomCardTypes(5, 0, 0, 0, 2)
+        .filter(r => r === cardType.blue);
+      // then
+      expect(result.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it('should have total cards', () => {
+      // when
+      const result = component.generateRandomCardTypes(5, 1, 1, 1, 1);
+      // then
+      expect(result.length).toBe(5);
+    })
   });
 });
