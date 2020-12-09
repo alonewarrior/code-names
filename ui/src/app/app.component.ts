@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ICard} from './models/ICard';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ui';
+
+  tempCard: ICard = {
+    noun: 'fiddlesticks',
+    type: 'red',
+    revealed: false,
+    revealedImage: 'none'
+  };
 }

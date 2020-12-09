@@ -1,0 +1,16 @@
+<div class="outer-border"
+     [ngClass]="{'showBlueKey' : showKey && card.type === 'blue',
+'showRedKey' : showKey && card.type === 'red',
+'showInnocentKey' : showKey && card.type === 'innocent bystander',
+'showAssassinKey' : showKey && card.type === 'assassin',
+'fillBlue' : card.type === 'blue' && card.revealed,
+'fillRed' : card.type === 'red' && card.revealed,
+'fillInnocentBystander' : card.type === 'innocent bystander' && card.revealed,
+'fillAssassin' : card.type === 'assassin' && card.revealed}"
+(click)="revealCard()">
+  <div class="noun-label">
+    <h3>
+      {{card.noun}}
+    </h3>
+  </div>
+</div>
