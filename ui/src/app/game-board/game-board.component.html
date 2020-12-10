@@ -1,5 +1,5 @@
 <div class="outer-board">
   <div *ngFor="let card of cards">
-    <app-card [card]="card" [showKey]="showKeys" (cardSelected)="aCardSelected($event)"></app-card>
+    <app-card [card]="card" [showKey]="showKeys" (cardSelected)="aCardSelected($event)" [disabled]="isGameOver"></app-card>
   </div>
 </div>

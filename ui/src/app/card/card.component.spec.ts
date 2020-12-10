@@ -1,19 +1,16 @@
 import {CardComponent} from './card.component';
 import {ICard} from '../models/ICard';
-import {cardType} from '../models/card-type-enum';
+import {CardType} from '../models/card-type-enum';
 
 describe('CardComponent', () => {
   let component: CardComponent;
   let card: ICard;
 
-
-
   beforeEach(() => {
     component = new CardComponent();
-
     card = {
       noun: 'fiddlesticks',
-      type: cardType.red,
+      type: CardType.red,
       revealed: false,
       revealedImage: 'none'
     };
@@ -24,8 +21,8 @@ describe('CardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('revealCard', () => {
-    it(`should set the revealed of the card to true`, () => {
+  describe('.revealCard()', () => {
+    it(`should set .card.revealed to true`, () => {
       component.card = card;
 
       // when
@@ -33,6 +30,17 @@ describe('CardComponent', () => {
 
       // then
       expect(component.card.revealed).toBeTrue();
+    });
+
+    it(`should not set .card.revealed to true when .disabled is true`, () => {
+      component.disabled = true;
+      component.card = card;
+
+      // when
+      component.revealCard();
+
+      // then
+      expect(component.card.revealed).toBeFalse();
     });
 
   });

@@ -6,7 +6,8 @@
 'fillBlue' : card.type === 'Blue' && card.revealed,
 'fillRed' : card.type === 'Red' && card.revealed,
 'fillInnocentBystander' : card.type === 'Bystander' && card.revealed,
-'fillAssassin' : card.type === 'Assassin' && card.revealed}"
+'fillAssassin' : card.type === 'Assassin' && card.revealed,
+'disabled': disabled}"
      (click)="revealCard()">
   <div class="noun-label">
     <h3>

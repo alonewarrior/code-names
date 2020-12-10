@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ICard} from '../models/ICard';
-import {cardType} from '../models/card-type-enum';
+import {CardType} from '../models/card-type-enum';
 
 @Component({
   selector: 'app-game-board',
@@ -11,7 +11,8 @@ export class GameBoardComponent implements OnInit {
 
   @Input() showKeys = false;
   @Input() cards: ICard[] = [];
-  @Output() cardSelected: EventEmitter<cardType> = new EventEmitter<cardType>();
+  @Input() isGameOver: boolean;
+  @Output() cardSelected: EventEmitter<CardType> = new EventEmitter<CardType>();
 
   constructor() {
   }
@@ -19,7 +20,7 @@ export class GameBoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  aCardSelected($event: cardType): void {
+  aCardSelected($event: CardType): void {
     this.cardSelected.emit($event);
   }
 }

@@ -1,7 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+app-game-board {
+  align-self: stretch;
+}
+
 .message {
   display: flex;
-  padding-top: 1em;
+  padding: 1em 0;
   font-size: 20px;
+
+}
+
+.message.gameOver {
+  font-weight: bold;
 }
 
 .button-bar {
