@@ -37,6 +37,10 @@ export class AppComponent implements OnInit {
     this.isGameOver = false;
   }
 
+  cardsRemaining(team: CardType.red | CardType.blue | 'Red' | 'Blue'): number {
+    return this.cards.filter(c => c.type === team && c.revealed === false).length;
+  }
+
   toggleKey(): void {
     this.keyVisible = !this.keyVisible;
   }

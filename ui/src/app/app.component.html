@@ -5,7 +5,13 @@
   <button (click)="cardSelected(null)">Pass Turn</button>
 </div>
 
-<div class="message" [ngClass]="{'gameOver': isGameOver}">{{message}}</div>
+<div class="card-counter-container">
+  <div *ngIf="cards.length" class="card-counter">Red team cards remaining: {{cardsRemaining('Red')}}</div>
+  <div *ngIf="cards.length" class="card-counter">Blue team cards remaining: {{cardsRemaining('Blue')}}</div>
+</div>
+
+
+<div class="message" [ngClass]="{'gameOver': isGameOver, 'red-turn': !isGameOver && currentTurn === 'Red', 'blue-turn': !isGameOver && currentTurn === 'Blue'}">{{message}}</div>
 
 <app-game-board [showKeys]="keyVisible" [cards]="cards" (cardSelected)="cardSelected($event)" [isGameOver]="isGameOver"></app-game-board>
 

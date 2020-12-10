@@ -4,6 +4,18 @@
   align-items: center;
 }
 
+.cards-remaining-container {
+  display: flex;
+}
+
+.card-counter-container :first-child {
+  padding: 1.5em 0 .25em 0;
+}
+
+.card-counter-container :last-child {
+  padding: .25em 0 0 0;
+}
+
 app-game-board {
   align-self: stretch;
 }
@@ -12,7 +24,14 @@ app-game-board {
   display: flex;
   padding: 1em 0;
   font-size: 20px;
+}
 
+.message.red-turn {
+  color: red;
+}
+
+.message.blue-turn {
+  color: blue;
 }
 
 .message.gameOver {

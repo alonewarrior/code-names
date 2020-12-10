@@ -102,16 +102,17 @@ describe('AppComponent', () => {
       expect(component.currentTurn).toEqual(CardType.red);
     });
 
-    it(`should set .message to 'Blue team's turn' team when gameService.findStartingTeam() returns CardType.blue`, () => {
-      // given
-      mockGameService.findStartingTeam.withArgs(mockGameCards).and.returnValue(CardType.blue);
+    it(`should set .message to 'Blue team's turn' team when gameService.findStartingTeam() returns CardType.blue`,
+      () => {
+        // given
+        mockGameService.findStartingTeam.withArgs(mockGameCards).and.returnValue(CardType.blue);
 
-      // when
-      component.newGame();
+        // when
+        component.newGame();
 
-      // then
-      expect(component.message).toEqual(`Blue team's turn`);
-    });
+        // then
+        expect(component.message).toEqual(`Blue team's turn`);
+      });
 
     it(`should set .message to 'Red team's turn' team when gameService.findStartingTeam() returns CardType.red`, () => {
       // given
@@ -135,6 +136,55 @@ describe('AppComponent', () => {
       expect(component.isGameOver).toEqual(false);
     });
 
+  });
+
+  describe(`.cardsRemaining()`, () => {
+    [
+      {
+        description: 'CardType.red with only one red card, expected (1)',
+        cards: [{type: CardType.red, revealed: false}],
+        team: CardType.red,
+        expected: 1
+      },
+      {
+        description: 'CardType.blue with two blue cards, expected (2)',
+        cards: [{type: CardType.blue, revealed: false}, {type: CardType.blue, revealed: false}],
+        team: CardType.blue,
+        expected: 2
+      },
+      {
+        description: 'CardType.blue with two blue cards and 1 red card, expected (2)',
+        cards: [
+          {type: CardType.blue, revealed: false},
+          {type: CardType.blue, revealed: false},
+          {type: CardType.red, revealed: false}
+        ],
+        team: CardType.blue,
+        expected: 2
+      },
+      {
+        description: 'CardType.blue with two blue cards, 1 revealed, and 1 red card, expected (1)',
+        cards: [
+          {type: CardType.blue, revealed: false},
+          {type: CardType.blue, revealed: true},
+          {type: CardType.red, revealed: false}
+        ],
+        team: CardType.blue,
+        expected: 1
+      }
+    ]
+      .forEach((data) => {
+        it(`should return the correct count - description (${data.description})`, () => {
+          // given
+          component.cards = data.cards as ICard[];
+
+          // when
+          const result = component.cardsRemaining(data.team as CardType.red | CardType.blue);
+
+          // then
+          expect(result).toEqual(data.expected);
+        });
+      });
   });
 
   describe(`.cardSelected()`, () => {
@@ -187,7 +237,7 @@ describe('AppComponent', () => {
       {currentTurn: CardType.blue, valuePassedIn: CardType.red, expected: CardType.red},
       {currentTurn: CardType.red, valuePassedIn: CardType.blue, expected: CardType.blue},
       {currentTurn: CardType.blue, valuePassedIn: CardType.blue, expected: CardType.blue},
-      {currentTurn: CardType.red, valuePassedIn: CardType.red, expected: CardType.red},
+      {currentTurn: CardType.red, valuePassedIn: CardType.red, expected: CardType.red}
     ]
       .forEach((data) => {
         it(
@@ -212,7 +262,7 @@ describe('AppComponent', () => {
       {currentTurn: CardType.blue, valuePassedIn: CardType.red, expected: `Red team's turn`},
       {currentTurn: CardType.red, valuePassedIn: CardType.blue, expected: `Blue team's turn`},
       {currentTurn: CardType.blue, valuePassedIn: CardType.blue, expected: `Blue team's turn`},
-      {currentTurn: CardType.red, valuePassedIn: CardType.red, expected: `Red team's turn`},
+      {currentTurn: CardType.red, valuePassedIn: CardType.red, expected: `Red team's turn`}
     ]
       .forEach((data) => {
         it(
